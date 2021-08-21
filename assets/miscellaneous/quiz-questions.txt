@@ -1,0 +1,46 @@
+====================================
+Javascript Questions & Answers for Quiz
+====================================
+
+1.) What is JavaScript?
+	A. A font that's inspired by coffee.
+	B. A client-side and server-side scripting language inserted into HTML 
+	   pages and is understood by web browsers.
+	C. An ancient language spoken by Mayans?
+	D. A prescription for a common skin rash?
+-------------------------------------
+ANSWER: B
+-------------------------------------
+2.) What is an example of JavaScript Data Types?
+	A. String 
+	B. Number 
+	C. Boolean
+	D. All of the above
+-------------------------------------
+ANSWER: D 
+-------------------------------------
+3.) What does "var" commonly stand for?
+	A. Variable
+	B. Variety 
+	C. Varied Associative References 
+	D. Very  Awkard Response
+-------------------------------------
+ANSWER: A 
+-------------------------------------
+4.) Which symbols are used for comments in Javascript?
+	A. //
+	B. /*
+	C. <!-- 
+	D. Both A and B 
+-------------------------------------
+ANSWER: D
+-------------------------------------
+5.) What are all the looping structures in JavaScript?
+	A. for 
+	B. while
+	C. Both A and B  
+	D. !important
+-------------------------------------
+ANSWER: C 
+-------------------------------------
+

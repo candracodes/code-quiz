@@ -1,9 +1,14 @@
-/* TODO: Create responsive style components for code quiz */
+/* ====== MAIN WRAPPER ELEMENTS ====== */
+
 body {
     background-color: #eff5f8;
     margin: 0;
+    color: #333333;
 }
-
+.wrapper {
+    padding-top: 20px;
+}
+/* ====== NAVBAR ====== */
 nav {
     background-color: #f0ead6;
     padding: 20px;
@@ -13,13 +18,64 @@ nav .navLeft {
     float: left;
 }
 
+nav .navLeft a {
+    text-decoration: none;
+    color: #333333;
+}
+nav .navLeft a:hover {
+    color:black;
+    text-decoration: underline;
+}
+
 nav .navRight {
     float: right;
 }
 nav .clear {
     clear: both;
 }
+/* ====== TIMER ====== */
+#timer {
+    font-weight:bold;
+    color: crimson;
+}
 
+/* ====== QUESTION CONTAINER ====== */
+.question-container-hide {
+    display: none;
+}
+.question-container-show {
+    display: block;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 80vw;
+    background-color: #f0ead6;
+}
+/* ====== HIGH SCORE CONTAINER ====== */
+.score-container-hide {
+    display: none;
+}
+.score-container-show {
+    display: block;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 80vw;
+    background-color: #f0ead6;
+}
+.score-container-show li {
+    padding:10px;
+    text-align: left;
+    list-style: none;
+}
+/* ====== CARD CONTENTS ====== */
+.card-contents {
+    padding: 5px 5px 30px 5px;
+}
+
+/* ====== FORM ELEMENTS ====== */
 button {
     padding: 10px;
     margin: 24px;
@@ -32,25 +88,6 @@ button {
 input {
     background-color: #f7f7f7;
 }
-
-.wrapper {
-    padding-top: 20px;
-}
-
-.container {
-    display: block;
-    margin: 40px auto;
-    text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: 60vw;
-    background-color: #f0ead6;
-}
-
-.card-contents {
-    padding: 5px 5px 30px 5px;
-}
-
 #name,
 #email,
 #submit {
@@ -60,7 +97,7 @@ input {
     box-sizing: border-box;
     font-size: 18px;
 }
-
+/* ====== RESPONSE ELEMENT ====== */
 #response {
     padding-bottom: 30px;
 }

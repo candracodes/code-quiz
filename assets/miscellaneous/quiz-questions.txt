@@ -23,22 +23,22 @@ ANSWER: D
 	A. Variable
 	B. Variety 
 	C. Varied Associative References 
-	D. Very  Awkard Response
+	D. Very Awkward Response
 -------------------------------------
 ANSWER: A 
 -------------------------------------
 4.) Which symbols are used for comments in Javascript?
 	A. //
-	B. /*
+	B. **
 	C. <!-- 
-	D. Both A and B 
+	D. !!
 -------------------------------------
-ANSWER: D
+ANSWER: A
 -------------------------------------
 5.) What are all the looping structures in JavaScript?
 	A. for 
 	B. while
-	C. Both A and B  
+	C. Both for and while 
 	D. !important
 -------------------------------------
 ANSWER: C 

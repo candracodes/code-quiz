@@ -6,43 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Candra's Code Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <nav>
-        <div class="navLeft"><a href="#">View High Scores</a></div>
+        <div class="navLeft"><a id="high-score-link" href="#">View High Scores</a></div>
         <div class="navRight">Timer: <span id="timer"></span></div>
         <div class="clear"></div>
     </nav>
     <div class="wrapper">
         <!-- THIS DIV DISPLAYS THE QUESTIONS & ANSWERS -->
-        <div class="question-container-show">
-            <div class="card-contents"></div>
-            <h1>Javascript Code Quiz</h1>
-            <form>
-                <button id="submit">Start Quiz</button>
-                <div id="questions">
+        <div id="question-main-container" class="question-main-container">
+            <div class="card-contents">
+                <h1 id="main-header">Javascript Code Quiz</h1>
+                <p id="question-text">
+                    <ol id="instruction-text">
+                        <li>Answer the following Javascript related questions in under a minute.</li>
+                        <li>Time starts when you click the "Start Quiz" button. </li>
+                        <li>For each question you get wrong, you will lose 5 seconds of remaining time.</li>
+                        <li>When you are done, enter your name and see where you rank on the Leader Board.</li>
+                    </ol>
+                </p>
+                <button id="start-quiz">Start Quiz</button>
+                
+                <!-- QUESTIONS CONTAINER -->
+                <div id="question-container">
                     <!-- QUESTIONS WILL POPULATE HERE -->
-                </div>
+                    <h2 id="questions"></h2>
 
-                <div>
+                    <!-- THIS IS WHERE THE MULTIPLE CHOICE ANSWERS WILL POPULATE -->
+                    <button id="answer-button" class="answer-button"></button>
+                    <button id="answer-button" class="answer-button"></button>
+                    <button id="answer-button" class="answer-button"></button>
+                    <button id="answer-button" class="answer-button"></button>
+
                     <!-- THIS AREA WILL DISPLAY WHETHER THE ANSWERS ARE RIGHT OR WRONG -->
                     <h3 id="response"></h3>
-                </div>
-            </form>
-        </div>
+                </div><!-- /question-container -->
+
+                <!-- RESULTS CONTAINER -->
+                <div id="results-container">
+                    <h2>Quiz Results</h2>
+                    <h3>You scored: <span id="results"></span> out of 5</h3>
+                    <!-- ENTER YOUR NAME AND SUBMIT IT TO THE LEADER BOARD -->
+                    <div id="leaderboard-form">
+                        <label for="player-name">Enter Name:</label>
+                        <input type="text" name="player-name" id="player-name" placeholder="ex. John" />
+                        <button id="submit-player">Submit</button>
+                    </div>
+                </div><!-- /results-container-->
+            </div><!-- /card-contents -->
+        </div><!-- /questions-main-container-->
 
         <!-- THIS DIV WILL DISPLAY THE LEADER BOARD/HIGH SCORES -->
-        <div class="score-container-show">
-            <div class="card-contents"></div>
-            <h1>High SCORES</h1>
-            <ul id="player-info">
-                <li>Name: </li>
-            </ul>
-        </div>
-    </div>
-    </div>
+        <div id="score-container" class="score-container">
+            <div class="card-contents">
+                <h2>High Scores</h2>
+                <!-- POPULATE PLAYER INFO HERE -->
+                <ul id="player-info"></ul>
+                <!-- THIS Button Restarts the quiz -->
+                <button id="restart-quiz">Retake Quiz</button>
+                <button id="clear-quiz">Clear Scores</button>
+            </div> <!-- /card-contents -->
+        </div><!-- /score-container -->
+    </div><!-- /wrapper -->
 
     <script src="./assets/js/script.js"></script>
 </body>

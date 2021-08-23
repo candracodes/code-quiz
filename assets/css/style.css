@@ -4,6 +4,7 @@ body {
     background-color: #eff5f8;
     margin: 0;
     color: #333333;
+    font-family: 'Roboto', sans-serif;
 }
 .wrapper {
     padding-top: 20px;
@@ -38,12 +39,15 @@ nav .clear {
     font-weight:bold;
     color: crimson;
 }
-
+/* ====== INSTRUCTION TEXT ====== */
+#instruction-text {
+    text-align:left;
+}
 /* ====== QUESTION CONTAINER ====== */
-.question-container-hide {
+#question-container {
     display: none;
 }
-.question-container-show {
+.question-main-container {
     display: block;
     margin: 40px auto;
     text-align: center;
@@ -52,12 +56,14 @@ nav .clear {
     width: 80vw;
     background-color: #f0ead6;
 }
+/* ====== RESULTS CONTAINER ====== */
+#results-container {
+    display: none;
+}
+
 /* ====== HIGH SCORE CONTAINER ====== */
-.score-container-hide {
+.score-container {
     display: none;
-}
-.score-container-show {
-    display: block;
     margin: 40px auto;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -65,7 +71,7 @@ nav .clear {
     width: 80vw;
     background-color: #f0ead6;
 }
-.score-container-show li {
+.score-container li {
     padding:10px;
     text-align: left;
     list-style: none;
@@ -75,10 +81,25 @@ nav .clear {
     padding: 5px 5px 30px 5px;
 }
 
+/* ====== ANSWER BUTTON ====== */
+.answer-button {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: white;
+    color: #333333;
+    border: 0;
+    width: 70vw;
+    margin: 5px;
+}
+.answer-button:hover {
+    background-color: #f8f9fa;
+    color: #333333;
+}
+
 /* ====== FORM ELEMENTS ====== */
 button {
     padding: 10px;
-    margin: 24px;
     cursor: pointer;
     font-size: 24px;
     background-color: #247BA0;
@@ -87,6 +108,12 @@ button {
 
 input {
     background-color: #f7f7f7;
+    color: #333333;
+    font-size: 20px;
+    border: 0;
+    width: 50vw;
+    line-height: 30px;
+    margin-right: 15px;
 }
 #name,
 #email,

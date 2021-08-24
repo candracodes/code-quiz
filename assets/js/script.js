@@ -61,6 +61,11 @@ let questions = [{
     }
 ]; // end: questions array
 
+// TODO: INITIALIZE STORED SCORES ON PAGE LOAD
+function init() {
+    getWins();
+}
+
 // TODO: CREATE FUNCTION THAT OPERATES A COUNTDOWN
 function countdown() {
     console.log("The countdown has begun.");
@@ -271,6 +276,23 @@ function showHighScores(event) {
     } // end: else
 } // end: showHighScores(event)
 
+// This win function gets used by init (as explained in homework)
+function getWins() {
+    // Get stored value from client storage, if it exists
+    var storedWins = localStorage.getItem("winCount");
+    // If stored value doesn't exist, set counter to 0
+    if (storedWins === null) {
+        score = 0;
+    } else {
+        // If a value is retrieved from client storage set the winCounter to that value
+        score = storedWins;
+    }
+    //Render win count to page
+    resultsEl.textContent = score;
+
+    // TODO: Figure out why this function is increasing the math by 10 points
+}
+
 // TODO: CREATE COLLECTION OF EVENT LISTENERS
 
 // ACTION: FIRE OFF QUIZ WHEN USER CLICKS THIS BUTTON
@@ -279,8 +301,11 @@ startQuizButtonEl.addEventListener('click', startQuiz);
 // ACTION: Restart quiz by simply reloading the main page
 restartQuizButtonEl.addEventListener('click', function() {
     location.href = 'index.html';
-    storedScores = JSON.parse(localStorage.getItem('score'));
+    // storedScores = JSON.parse(localStorage.getItem('score'));
 });
+
+// Calls initializer on page load
+init();
 
 // ACTION: Clear out high scores from local storage
 clearQuizButtonEl.addEventListener('click', function() {
@@ -297,5 +322,6 @@ highScoreLinkEl.addEventListener('click', function() {
     playerInfoEl.style.display = "block";
     // Show stored player scores 
     // TODO: Figureout why this isn't working
-    storedScores = JSON.parse(localStorage.getItem('score'));
+    var storedScores = JSON.parse(localStorage.getItem('score'));
+    showHighScores(storedScores);
 });

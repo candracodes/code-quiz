@@ -61,7 +61,7 @@ let questions = [{
     }
 ]; // end: questions array
 
-// TODO: INITIALIZE STORED SCORES ON PAGE LOAD
+// TODO: INITIALIZE STORED SCORES ON PAGE LOAD (AS SEEN ON HOMEWORK)
 function init() {
     getWins();
 }
@@ -168,8 +168,13 @@ function checkAnswer(event) {
         responseEl.style.display = 'block';
         responseEl.textContent = 'Wrong!';
         currentQuestion++;
-        score--;
-        // remove 5 seconds from timer when the answer is wrong
+        // TODO: Keep the below commented area included for learning purposes. Also includes the reason why the logic doesn't work
+        // I initially put this decrement here:
+        // score--; 
+        // ... thinking that it would do the OPPOSITE of the if statement, but it was causing a miscalculation.
+        // What I now realize is... if it's wrong... then it simply doesn't give a point, no need to decrement
+
+        // THIS remove 5 seconds from timer when the answer is wrong
         timer -= 5;
 
         // hide the response element after 800 milliseconds
@@ -207,16 +212,24 @@ function stopQuiz() {
     // show the high score link
     highScoreLinkEl.style.display = "block";
 
+    // if score is less than zero, make score zero rather than a negative number
+    // NOTE: If I move this logic ABOVE resultsEl.textContent... it shows a HALF accurate result
+    if (score <= 0) {
+        score = 0;
+    }
+    else {
+        score = score;
+    }
+
     // display the final score
     resultsEl.textContent = score;
 
     // set the timer back to zero
     timerEl.textContent = 0;
 
-    // if score is less than zero, make score zero rather than a negative number
-    if (score <= 0) {
-        score = 0;
-    }
+    // TODO: Note... if I place lines 210 - 217 here instead... it results in the sum of all wrong answers being -5
+
+    
 
     // show high score link
     revealResults();
@@ -234,6 +247,9 @@ function revealResults(){
 
 // TODO: CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
 function showHighScores(event) {
+
+    var updateScore;
+
     console.log("High Score Board is being revealed upon submission");
     // stop the browser from leaving the page
     event.preventDefault();

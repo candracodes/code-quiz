@@ -62,9 +62,9 @@ let questions = [{
 ]; // end: questions array
 
 // TODO: INITIALIZE STORED SCORES ON PAGE LOAD (AS SEEN ON HOMEWORK)
-function init() {
-    getWins();
-}
+// function init() {
+//     getWins();
+// }
 
 // TODO: CREATE FUNCTION THAT OPERATES A COUNTDOWN
 function countdown() {
@@ -247,12 +247,14 @@ function revealResults(){
 
 // TODO: CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
 function showHighScores(event) {
+    // TODO: Figure out why I'm receiving an error of Uncaught TypeError: Cannot read property 'preventDefault' of null at showHighScores 
+    // stop the browser from leaving the page
+    event.preventDefault();
 
     var updateScore;
 
     console.log("High Score Board is being revealed upon submission");
-    // stop the browser from leaving the page
-    event.preventDefault();
+    
 
     // if user clicks button without entering name, do nothing
     if (playerNameEl.value.length === 0) {
@@ -293,21 +295,19 @@ function showHighScores(event) {
 } // end: showHighScores(event)
 
 // This win function gets used by init (as explained in homework)
-function getWins() {
-    // Get stored value from client storage, if it exists
-    var storedWins = localStorage.getItem("winCount");
-    // If stored value doesn't exist, set counter to 0
-    if (storedWins === null) {
-        score = 0;
-    } else {
-        // If a value is retrieved from client storage set the winCounter to that value
-        score = storedWins;
-    }
-    //Render win count to page
-    resultsEl.textContent = score;
-
-    // TODO: Figure out why this function is increasing the math by 10 points
-}
+// function getWins() {
+//     // Get stored value from client storage, if it exists
+//     var storedWins = window.localStorage.getItem("winCount");
+//     // If stored value doesn't exist, set counter to 0
+//     if (storedWins === null) {
+//         score = 0;
+//     } else {
+//         // If a value is retrieved from client storage set the winCounter to that value
+//         score = storedWins;
+//     }
+//     //Render win count to page
+//     resultsEl.textContent = score;
+// }
 
 // TODO: CREATE COLLECTION OF EVENT LISTENERS
 
@@ -320,8 +320,9 @@ restartQuizButtonEl.addEventListener('click', function() {
     // storedScores = JSON.parse(localStorage.getItem('score'));
 });
 
+// Doesn't work
 // Calls initializer on page load
-init();
+// init();
 
 // ACTION: Clear out high scores from local storage
 clearQuizButtonEl.addEventListener('click', function() {

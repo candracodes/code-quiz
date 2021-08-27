@@ -1,11 +1,4 @@
-/* 
-    TODO: GET ASSISTANCE WITH THE FOLLOWING:
-    1. The math for score isn't accurate; it's subtracting 1 additional point from the score
-    2. After entering name and hitting submit, the score isn't accurate; there's still something subtracting an extra "1"
-    3. Scores aren't being "stored" locally
-*/
-
-// TODO: DEFINE HTML ID ELEMENTS AS VARIABLES
+// DEFINE HTML ID ELEMENTS AS VARIABLES
 var highScoreLinkEl = document.getElementById("high-score-link");
 var timerEl = document.getElementById("timer");
 var questionMainContainerEl = document.getElementById("question-main-container");
@@ -26,14 +19,14 @@ var restartQuizButtonEl = document.getElementById("restart-quiz")
 var clearQuizButtonEl = document.getElementById("clear-quiz")
 var instructionTextEl = document.getElementById("instruction-text");
 
-// TODO: CREATE TIME AND SCORE RELATED VARIABLES
+// CREATE TIME AND SCORE RELATED VARIABLES
 let timer = 0;
 let currentQuestion = 0
 let score = 0;
 let scoreArray = [];
 let timerInterval = false;
 
-// TODO: CREATE ARRAY THAT CONTAINS QUESTIONS, MULTIPLE CHOICE ANSWERS & CORRECT ANSWERS
+// CREATE AN ARRAY THAT CONTAINS QUESTIONS, MULTIPLE CHOICE ANSWERS & CORRECT ANSWERS
 let questions = [{
         theQuestion: "1. What is JavaScript?",
         answers: ["A font that's inspired by coffee.", "A client-side and server-side scripting language inserted into HTML pages and is understood by web browsers.", "An ancient language spoken by Mayans.", "A prescription for a common skin rash."],
@@ -61,12 +54,7 @@ let questions = [{
     }
 ]; // end: questions array
 
-// TODO: INITIALIZE STORED SCORES ON PAGE LOAD (AS SEEN ON HOMEWORK)
-// function init() {
-//     getWins();
-// }
-
-// TODO: CREATE FUNCTION THAT OPERATES A COUNTDOWN
+// CREATE FUNCTION THAT FIRES OFF A COUNTDOWN
 function countdown() {
     console.log("The countdown has begun.");
     // Countdown Timer
@@ -76,8 +64,10 @@ function countdown() {
 
         // CONDITION: If the timer is 0, OR, you've reached the last question, do the following
         if (timer < 1 || currentQuestion === questions.length) {
+            // Set timer to 0
             timerEl.textContent = 0;
-            //endGame();
+            
+            // clear out the remaining time
             clearInterval(timerInterval);
 
             //hide question container
@@ -96,10 +86,10 @@ function countdown() {
     }, 1000)
 } // end: countdown()
 
-// TODO: CREATE A FUNCTION TO START THE QUIZ
+// CREATE A FUNCTION TO START THE QUIZ
 function startQuiz() {
-    console.log("The startQuiz function triggered.");
-    // when the time calls, hide high scores with questionContainerEl.style.display = 'none';
+    console.log("The startQuiz function has been triggered.");
+    // set the timer for a minute
     timer = 60;
     timerEl.textContent = timer;
     countdown();
@@ -115,7 +105,7 @@ function startQuiz() {
     scoreContainerEl.style.display = "none";
 } //end: startQuiz()
 
-// TODO: CREATE FUNCTION THAT SHOWS QUESTIONS
+// CREATE FUNCTION THAT SHOWS QUESTIONS
 function showQuestions() {
     console.log("The showQuestions function has been triggered.");
     // show questions div
@@ -135,11 +125,11 @@ function showQuestions() {
     }
 } // end: showQuestions()
 
-// TODO: CREATE A FUNCTION THAT EXAMINES WHETHER THE SELECTED ANSWER IS CORRECT
+// CREATE A FUNCTION THAT EXAMINES WHETHER THE SELECTED ANSWER IS CORRECT
 function checkAnswer(event) {
     console.log("The checkAnswer function has been triggered.");
 
-    // CONDITION: Selected answer is correct and a score of "1" gets added to the total score
+    // CONDITION: Selected answer is correct, so a score of "1" gets added to the total score
     if (event.target.textContent === questions[currentQuestion].answer) {
         responseEl.style.display = 'block';
         responseEl.textContent = 'Correct!';
@@ -163,18 +153,13 @@ function checkAnswer(event) {
 
     } // end: if
 
-    // CONDITION: Selected answer is incorrect and score decrements by 1 point
+    // CONDITION: Selected answer is incorrect, so no point is added
     else {
         responseEl.style.display = 'block';
         responseEl.textContent = 'Wrong!';
         currentQuestion++;
-        // TODO: Keep the below commented area included for learning purposes. Also includes the reason why the logic doesn't work
-        // I initially put this decrement here:
-        // score--; 
-        // ... thinking that it would do the OPPOSITE of the if statement, but it was causing a miscalculation.
-        // What I now realize is... if it's wrong... then it simply doesn't give a point, no need to decrement
 
-        // THIS remove 5 seconds from timer when the answer is wrong
+        // DEDUCT TIME: Remove 5 seconds from timer when the answer is wrong
         timer -= 5;
 
         // hide the response element after 800 milliseconds
@@ -185,7 +170,6 @@ function checkAnswer(event) {
         // stop game if it's the last question
         if (currentQuestion === questions.length) {
             stopQuiz();
-            console.log("User answered question incorectly");
         }
         // stop game if it's the last question OR if the timer runs out
         else if (timer < 1 || currentQuestion === questions.length) {
@@ -199,7 +183,7 @@ function checkAnswer(event) {
     } // end: else
 } // end: checkAnswer()
 
-// TODO: CREATE A FUNCTION THAT STOPS THE GAME
+// CREATE A FUNCTION THAT STOPS THE QUIZ
 function stopQuiz() {
     console.log("Quiz has been stopped.");
     // hide all unecessary divs
@@ -213,10 +197,10 @@ function stopQuiz() {
     highScoreLinkEl.style.display = "block";
 
     // if score is less than zero, make score zero rather than a negative number
-    // NOTE: If I move this logic ABOVE resultsEl.textContent... it shows a HALF accurate result
     if (score <= 0) {
         score = 0;
     }
+    // otherwise, show the actually sum of the score
     else {
         score = score;
     }
@@ -227,16 +211,12 @@ function stopQuiz() {
     // set the timer back to zero
     timerEl.textContent = 0;
 
-    // TODO: Note... if I place lines 210 - 217 here instead... it results in the sum of all wrong answers being -5
-
-    
-
     // show high score link
     revealResults();
 
 } // end: stopQuiz()
 
-// TODO: CREATE FUNCTION THAT REVEALS RESULTS WHEN TIME IS UP OR QUESTIONS ARE COMPLETE
+// CREATE FUNCTION THAT REVEALS RESULTS WHEN TIME IS UP OR QUESTIONS ARE COMPLETE
 function revealResults(){    
     // show the results container
     resultsContainerEl.style.display = "block";
@@ -245,21 +225,18 @@ function revealResults(){
     submitPlayerEl.addEventListener('click', showHighScores);
 } // end: revealResults()
 
-// TODO: CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
-function showHighScores(event) {
-    // TODO: When it's the first time playing the game, clicking the "View High Scores" link throws this error (Uncaught TypeError: Cannot read property 'preventDefault' of null at showHighScores).
-    // TODO: Investigate why that error happens. 
-    // stop the browser from leaving the page
-    event.preventDefault();
-
+// CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
+function showHighScores() {
+    
     var updateScore;
 
-    console.log("High Score Board is being revealed upon submission");
+    console.log("High Score Board is being revealed upon request");
     
     // if user clicks button without entering name, do nothing
     if (playerNameEl.value.length === 0) {
         return;
     } // end: if
+
     // otherwise, if user has entered a name, do this
     else {
         console.log("User has entered their name");
@@ -276,19 +253,22 @@ function showHighScores(event) {
             userScore: score
         };
 
-        // HERE'S RYAN'S SUGGESTED COMMAND, BUT IT THROWS AN ERROR FOR scoreArray.push(updateScore):
-        // scoreArray = JSON.parse(localStorage.getItem('score')); 
+        // FINALLY FIGURED OUT THE LOCAL STORAGE ISSUE!!! Ryan (my good friend of mine) explained to me that... if this is the user's first time taking this quiz, then scoreArray.push won't work 
+        // because nothing exists to "push." Thus, there's a need to check for "null" and if that's true, simply set the scoreArray back to an empty Array.
+
+        // Check to see if this is user's first time taking quiz, and if so... set scoreArray to empty array
+        scoreArray = JSON.parse(localStorage.getItem('score')); 
+        if (scoreArray === null){
+            scoreArray = [];
+        }
         
         // Add this newly entered info
         scoreArray.push(updateScore);
-        // I feel like this logic isn't really achieving anything
-        // scoreArray.sort((a, b) => b.userScore - a.userScore);
         localStorage.setItem('score', JSON.stringify(scoreArray));
 
         // DISPLAY: Create list items
         for (i = 0; i < scoreArray.length; i++) {
             let score = scoreArray[i].userName + ' : ' + scoreArray[i].userScore;
-    
             li = document.createElement('li');
             li.textContent = score;
             playerInfoEl.appendChild(li);
@@ -301,20 +281,15 @@ function showHighScores(event) {
 } // end: showHighScores(event)
 
 
-// TODO: CREATE COLLECTION OF EVENT LISTENERS
+// CREATE COLLECTION OF EVENT LISTENERS
 
-// ACTION: FIRE OFF QUIZ WHEN USER CLICKS THIS BUTTON
+// ACTION: FIRE OFF QUIZ WHEN USER CLICKS "Start Quiz"
 startQuizButtonEl.addEventListener('click', startQuiz);
 
 // ACTION: Restart quiz by simply reloading the main page
 restartQuizButtonEl.addEventListener('click', function() {
     location.href = 'index.html';
-    // storedScores = JSON.parse(localStorage.getItem('score'));
 });
-
-// Doesn't work
-// Calls initializer on page load
-// init();
 
 // ACTION: Clear out high scores from local storage
 clearQuizButtonEl.addEventListener('click', function() {
@@ -329,8 +304,12 @@ highScoreLinkEl.addEventListener('click', function() {
     scoreContainerEl.style.display = "block";
     // Show player info
     playerInfoEl.style.display = "block";
-    // Show stored player scores 
-    // TODO: Figureout why this isn't working
+    
+    // Hide questions container
+    questionMainContainerEl.style.display = "none";
+
+    // TODO: Figure out why the logic below isn't working.
+    // TODO: After clicking "View High Scores" link, the list items previously stored locally fail to display
     var storedScores = JSON.parse(localStorage.getItem('score'));
     showHighScores(storedScores);
 });

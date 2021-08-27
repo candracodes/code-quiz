@@ -247,7 +247,7 @@ function revealResults(){
 
 // TODO: CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
 function showHighScores(event) {
-    // TODO: When it's the first time playing the game, clicking the "View High Scores" link throws this error (Figure out why I'm receiving an error of Uncaught TypeError: Cannot read property 'preventDefault' of null at showHighScores).
+    // TODO: When it's the first time playing the game, clicking the "View High Scores" link throws this error (Uncaught TypeError: Cannot read property 'preventDefault' of null at showHighScores).
     // TODO: Investigate why that error happens. 
     // stop the browser from leaving the page
     event.preventDefault();

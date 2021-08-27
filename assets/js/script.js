@@ -247,7 +247,8 @@ function revealResults(){
 
 // TODO: CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
 function showHighScores(event) {
-    // TODO: Figure out why I'm receiving an error of Uncaught TypeError: Cannot read property 'preventDefault' of null at showHighScores 
+    // TODO: When it's the first time playing the game, clicking the "View High Scores" link throws this error (Figure out why I'm receiving an error of Uncaught TypeError: Cannot read property 'preventDefault' of null at showHighScores).
+    // TODO: Investigate why that error happens. 
     // stop the browser from leaving the page
     event.preventDefault();
 
@@ -255,7 +256,6 @@ function showHighScores(event) {
 
     console.log("High Score Board is being revealed upon submission");
     
-
     // if user clicks button without entering name, do nothing
     if (playerNameEl.value.length === 0) {
         return;
@@ -271,15 +271,18 @@ function showHighScores(event) {
         scoreContainerEl.style.display = "block";
 
         // CREATE: A new variable is created based on the submitted info
-
         updateScore = {
             userName: playerNameEl.value.trim(),
             userScore: score
         };
 
+        // HERE'S RYAN'S SUGGESTED COMMAND, BUT IT THROWS AN ERROR FOR scoreArray.push(updateScore):
+        // scoreArray = JSON.parse(localStorage.getItem('score')); 
+        
         // Add this newly entered info
         scoreArray.push(updateScore);
-        scoreArray.sort((a, b) => b.userScore - a.userScore);
+        // I feel like this logic isn't really achieving anything
+        // scoreArray.sort((a, b) => b.userScore - a.userScore);
         localStorage.setItem('score', JSON.stringify(scoreArray));
 
         // DISPLAY: Create list items
@@ -290,24 +293,13 @@ function showHighScores(event) {
             li.textContent = score;
             playerInfoEl.appendChild(li);
         } // end: for
+        
 
     } // end: else
+
+
 } // end: showHighScores(event)
 
-// This win function gets used by init (as explained in homework)
-// function getWins() {
-//     // Get stored value from client storage, if it exists
-//     var storedWins = window.localStorage.getItem("winCount");
-//     // If stored value doesn't exist, set counter to 0
-//     if (storedWins === null) {
-//         score = 0;
-//     } else {
-//         // If a value is retrieved from client storage set the winCounter to that value
-//         score = storedWins;
-//     }
-//     //Render win count to page
-//     resultsEl.textContent = score;
-// }
 
 // TODO: CREATE COLLECTION OF EVENT LISTENERS
 

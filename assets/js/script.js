@@ -88,7 +88,6 @@ function countdown() {
 
 // CREATE A FUNCTION TO START THE QUIZ
 function startQuiz() {
-    console.log("The startQuiz function has been triggered.");
     // set the timer for a minute
     timer = 60;
     timerEl.textContent = timer;
@@ -107,7 +106,6 @@ function startQuiz() {
 
 // CREATE FUNCTION THAT SHOWS QUESTIONS
 function showQuestions() {
-    console.log("The showQuestions function has been triggered.");
     // show questions div
     questionContainerEl.style.display = 'block';
     // style the questions text
@@ -127,7 +125,6 @@ function showQuestions() {
 
 // CREATE A FUNCTION THAT EXAMINES WHETHER THE SELECTED ANSWER IS CORRECT
 function checkAnswer(event) {
-    console.log("The checkAnswer function has been triggered.");
 
     // CONDITION: Selected answer is correct, so a score of "1" gets added to the total score
     if (event.target.textContent === questions[currentQuestion].answer) {
@@ -143,7 +140,6 @@ function checkAnswer(event) {
 
         // stop question if it's the last game
         if (currentQuestion === questions.length) {
-            console.log("User answered question incorectly");
             stopQuiz();
         }
         // else go to next question
@@ -185,7 +181,6 @@ function checkAnswer(event) {
 
 // CREATE A FUNCTION THAT STOPS THE QUIZ
 function stopQuiz() {
-    console.log("Quiz has been stopped.");
     // hide all unecessary divs
     highScoreLinkEl.style.display = "none";
     questionContainerEl.style.display = "none";
@@ -229,8 +224,6 @@ function revealResults(){
 function showHighScores() {
     
     var updateScore;
-
-    console.log("High Score Board is being revealed upon request");
     
     // if user clicks button without entering name, do nothing
     if (playerNameEl.value.length === 0) {
@@ -238,9 +231,7 @@ function showHighScores() {
     } // end: if
 
     // otherwise, if user has entered a name, do this
-    else {
-        console.log("User has entered their name");
-        
+    else {        
         // hide the main question container
         questionMainContainerEl.style.display = "none";
 
@@ -293,11 +284,14 @@ function scoreListLoop(){
     // More than one area needed this list item loop. So I've created a global list creation loop that can be used by both:
     // showHighScores AND after highScoreLinkEl is clicked.
 
+    // Declare updateScore variable for later use.
+    var updateScore;
+    
     // Check to see if this is user's first time taking quiz, and if so... set scoreArray to empty array
     scoreArray = JSON.parse(localStorage.getItem('score')); 
     if (scoreArray === null){
         // Debugging Test:
-        console.log("scoreArry is" + scoreArray  + " at line 300");
+        console.log("scoreArray is" + scoreArray  + " at line 300");
         scoreArray = [];
     }
 
@@ -308,7 +302,7 @@ function scoreListLoop(){
     };
 
     // Debugging Test:
-    console.log("scoreArry is" + scoreArray  + " at line 311");
+    console.log("scoreArray is" + scoreArray  + " at line 311");
 
     // Add this newly entered info
     scoreArray.push(updateScore);
@@ -316,7 +310,7 @@ function scoreListLoop(){
 
     // DISPLAY: Create list items
     for (i = 0; i < scoreArray.length; i++) {
-        console.log("scoreArry is" + scoreArray  + " at line 319");
+        console.log("scoreArray is" + scoreArray  + " at line 319");
         if (scoreArray === null && playerInfoEl === null){
             scoreArray = [];
         } //end: if
@@ -327,7 +321,7 @@ function scoreListLoop(){
             li.textContent = score;
             playerInfoEl.appendChild(li);
             // Debugging Test:
-            console.log("scoreArry is" + scoreArray  + " at line 330");
+            console.log("scoreArray is" + scoreArray  + " at line 330");
         } //end: else
     } // end: for
 

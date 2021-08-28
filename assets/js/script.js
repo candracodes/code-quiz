@@ -279,10 +279,10 @@ function scoreListLoop(){
     // TODO: If this is the user's first time taking this quiz, and no scores exist, figure out a way to stop displaying :0 (or maybe my code is just shocked that I'm being ridiculous and missing something obvious so it's making an intentional shocked face in the UI)
 
     // THE PURPOSE OF THIS FUNCTION:
-    // Prior to creating this function, if a user would click ont the "View High Scores" Link, it would throw an error
+    // Prior to creating this function, if a user would click on the "View High Scores" Link, it would throw an error.
     // Grace (my TA) pushed me in the right direction to realize my code wasn't D.R.Y.
-    // More than one area needed this list item loop. So I've created a global list creation loop that can be used by both:
-    // showHighScores AND after highScoreLinkEl is clicked.
+    // More than one area needs to use this list item loop. So I've created a global list creation loop that can be used by both:
+    // showHighScores() AND after the highScoreLinkEl is clicked.
 
     // Declare updateScore variable for later use.
     var updateScore;

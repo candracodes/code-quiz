@@ -282,7 +282,7 @@ function scoreListLoop(){
     // Prior to creating this function, if a user would click on the "View High Scores" Link, it would throw an error.
     // Grace (my TA) pushed me in the right direction to realize my code wasn't D.R.Y.
     // More than one area needs to use this list item loop. So I've created a global list creation loop that can be used by both:
-    // showHighScores() AND after the highScoreLinkEl is clicked.
+    // showHighScores() AND after highScoreLinkEl is clicked.
 
     // Declare updateScore variable for later use.
     var updateScore;
@@ -291,7 +291,7 @@ function scoreListLoop(){
     scoreArray = JSON.parse(localStorage.getItem('score')); 
     if (scoreArray === null){
         // Debugging Test:
-        console.log("scoreArray is" + scoreArray  + " at line 300");
+        console.log("scoreArray is" + scoreArray  + " at line 294");
         scoreArray = [];
     }
 
@@ -302,7 +302,7 @@ function scoreListLoop(){
     };
 
     // Debugging Test:
-    console.log("scoreArray is" + scoreArray  + " at line 311");
+    console.log("scoreArray is" + scoreArray  + " at line 305");
 
     // Add this newly entered info
     scoreArray.push(updateScore);
@@ -310,7 +310,7 @@ function scoreListLoop(){
 
     // DISPLAY: Create list items
     for (i = 0; i < scoreArray.length; i++) {
-        console.log("scoreArray is" + scoreArray  + " at line 319");
+        console.log("scoreArray is" + scoreArray  + " at line 313");
         if (scoreArray === null && playerInfoEl === null){
             scoreArray = [];
         } //end: if
@@ -321,7 +321,7 @@ function scoreListLoop(){
             li.textContent = score;
             playerInfoEl.appendChild(li);
             // Debugging Test:
-            console.log("scoreArray is" + scoreArray  + " at line 330");
+            console.log("scoreArray is" + scoreArray  + " at line 324");
         } //end: else
     } // end: for
 

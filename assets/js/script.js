@@ -285,18 +285,19 @@ function showHighScores() {
 
 // CREATE A FUNCTION WHERE THE LIST LOOP IS CREATED SO IT CAN BE USED GLOBALLY
 function scoreListLoop(){
+    // TODO: If this is the user's first time taking this quiz, and no scores exist, figure out a way to stop displaying :0 (or maybe my code is just shocked that I'm being ridiculous and missing something obvious so it's making an intentional shocked face in the UI)
+
     // THE PURPOSE OF THIS FUNCTION:
     // Prior to creating this function, if a user would click ont the "View High Scores" Link, it would throw an error
     // Grace (my TA) pushed me in the right direction to realize my code wasn't D.R.Y.
     // More than one area needed this list item loop. So I've created a global list creation loop that can be used by both:
-    // showHighScores AND after highScoreLinkEl is clicked
-    // TODO: If this is the user's first time taking this quiz, and no scores exist, figure out a way to stop displaying :0 (or maybe my code is just shocked that I'm being ridiculous and missing something obvious so it's making an intentional shocked face in the UI)
+    // showHighScores AND after highScoreLinkEl is clicked.
 
     // Check to see if this is user's first time taking quiz, and if so... set scoreArray to empty array
     scoreArray = JSON.parse(localStorage.getItem('score')); 
     if (scoreArray === null){
         // Debugging Test:
-        console.log("scoreArry is" + scoreArray  + " at line 295");
+        console.log("scoreArry is" + scoreArray  + " at line 300");
         scoreArray = [];
     }
 
@@ -307,7 +308,7 @@ function scoreListLoop(){
     };
 
     // Debugging Test:
-    console.log("scoreArry is" + scoreArray  + " at line 303");
+    console.log("scoreArry is" + scoreArray  + " at line 311");
 
     // Add this newly entered info
     scoreArray.push(updateScore);
@@ -315,22 +316,25 @@ function scoreListLoop(){
 
     // DISPLAY: Create list items
     for (i = 0; i < scoreArray.length; i++) {
-        console.log("scoreArry is" + scoreArray  + " at line 310");
+        console.log("scoreArry is" + scoreArray  + " at line 319");
         if (scoreArray === null && playerInfoEl === null){
             scoreArray = [];
         } //end: if
+
         else {
             let score = scoreArray[i].userName + ' : ' + scoreArray[i].userScore;
             li = document.createElement('li');
             li.textContent = score;
             playerInfoEl.appendChild(li);
             // Debugging Test:
-            console.log("scoreArry is" + scoreArray  + " at line 320");
-        }
+            console.log("scoreArry is" + scoreArray  + " at line 330");
+        } //end: else
     } // end: for
 
 }
-// CREATE COLLECTION OF EVENT LISTENERS
+// ******************************************************* 
+// CREATE COLLECTION OF EVENT LISTENERS 
+// ******************************************************* 
 
 // ACTION: FIRE OFF QUIZ WHEN USER CLICKS "Start Quiz"
 startQuizButtonEl.addEventListener('click', startQuiz);
@@ -349,18 +353,12 @@ clearQuizButtonEl.addEventListener('click', function() {
 
 // ACTION: See high scores/ Leaderboard
 highScoreLinkEl.addEventListener('click', function() {
-    // TESTING:
+    // Fire off the function that creates player name and player score list items
     scoreListLoop();
     // Show score container
     scoreContainerEl.style.display = "block";
     // Show player info
-    playerInfoEl.style.display = "block";
-    
+    playerInfoEl.style.display = "block";  
     // Hide questions container
     questionMainContainerEl.style.display = "none";
-
-    // TODO: Figure out why the logic below isn't working.
-    // TODO: After clicking "View High Scores" link, the list items previously stored locally fail to display
-    // var storedScores = JSON.parse(localStorage.getItem('score'));
-    // showHighScores(storedScores);
 });

@@ -18,6 +18,7 @@ var playerNameEl = document.getElementById("player-name");
 var restartQuizButtonEl = document.getElementById("restart-quiz")
 var clearQuizButtonEl = document.getElementById("clear-quiz")
 var instructionTextEl = document.getElementById("instruction-text");
+var noScoresToShow = document.getElementById("no-scores-to-show");
 
 // CREATE TIME AND SCORE RELATED VARIABLES
 let timer = 0;
@@ -223,8 +224,6 @@ function revealResults(){
 // CREATE A FUNCTION TO SHOW HIGH SCORES DIV AND ADD LI ELEMENTS BASED ON INPUT VALUE + # OF QUESTIONS ANSWERED CORRECTLY
 function showHighScores() {
     
-    var updateScore;
-    
     // if user clicks button without entering name, do nothing
     if (playerNameEl.value.length === 0) {
         return;
@@ -240,65 +239,34 @@ function showHighScores() {
 
         // Use this globally created function for creating/concatenating player list items        
         scoreListLoop();
-
-        // TODO: Keep this commented out code for learning purposes. If you use this code instead of scoreListLoop, it throws an error after user clicks "Show High Scores" link for the first time
-        // // CREATE: A new variable is created based on the submitted info
-        // // updateScore = {
-        // //     userName: playerNameEl.value.trim(),
-        // //     userScore: score
-        // // };
-
-        // // FINALLY FIGURED OUT THE LOCAL STORAGE ISSUE!!! Ryan (my good friend of mine) explained to me that... if this is the user's first time taking this quiz, then scoreArray.push won't work 
-        // // because nothing exists to "push." Thus, there's a need to check for "null" and if that's true, simply set the scoreArray back to an empty Array.
-
-        // // Check to see if this is user's first time taking quiz, and if so... set scoreArray to empty array
-        // scoreArray = JSON.parse(localStorage.getItem('score')); 
-        // if (scoreArray === null){
-        //     scoreArray = [];
-        // }
-        
-        // // Add this newly entered info
-        // scoreArray.push(updateScore);
-        // localStorage.setItem('score', JSON.stringify(scoreArray));
-
-        // // DISPLAY: Create list items
-        // for (i = 0; i < scoreArray.length; i++) {
-        //     let score = scoreArray[i].userName + ' : ' + scoreArray[i].userScore;
-        //     li = document.createElement('li');
-        //     li.textContent = score;
-        //     playerInfoEl.appendChild(li);
-        // } // end: for
-
-    } // end: else
-
-
+    } //end: else
 } // end: showHighScores(event)
 
 // CREATE A FUNCTION WHERE THE LIST LOOP IS CREATED SO IT CAN BE USED GLOBALLY
 function scoreListLoop(){
-    // TODO: If this is the user's first time taking this quiz, and no scores exist, figure out a way to stop displaying :0 (or maybe my code is just shocked that I'm being ridiculous and missing something obvious so it's making an intentional shocked face in the UI)
-
-    // THE PURPOSE OF THIS FUNCTION:
-    // Prior to creating this function, if a user would click on the "View High Scores" Link, it would throw an error.
-    // Grace (my TA) pushed me in the right direction to realize my code wasn't D.R.Y.
-    // More than one area needs to use this list item loop. So I've created a global list creation loop that can be used by both:
-    // showHighScores() AND after highScoreLinkEl is clicked.
-
+    
     // Declare updateScore variable for later use.
     var updateScore;
     
     // Check to see if this is user's first time taking quiz, and if so... set scoreArray to empty array
     scoreArray = JSON.parse(localStorage.getItem('score')); 
+    // This if statement is necessary so that it doesn't throw an error of "null" for the next if statement
     if (scoreArray === null){
-        // Debugging Test:
-        console.log("scoreArray is" + scoreArray  + " at line 294");
         scoreArray = [];
     }
-
+    // if no one has submitted a name, AND the score array is 0, then there's nothing to show
+    if (playerNameEl.value === "" && scoreArray.length === 0) {
+        noScoresToShow.style.display = "block";
+        return
+    }
+    // otherwise, don't worry about the above if statement and continue with the rest of the logic
+    else {
+        noScoresToShow.style.display = "none";
+    }
     // Defining how the loop should use the information to come...
     updateScore = {
         userName: playerNameEl.value.trim(),
-        userScore: score
+        userScore: score    
     };
 
     // Debugging Test:
@@ -311,9 +279,11 @@ function scoreListLoop(){
     // DISPLAY: Create list items
     for (i = 0; i < scoreArray.length; i++) {
         console.log("scoreArray is" + scoreArray  + " at line 313");
-        if (scoreArray === null && playerInfoEl === null){
-            scoreArray = [];
-        } //end: if
+        // TODO: Scenario: User has played the game before, historical data is saved locally, HOWEVER, the else is still creating a list element with an empty string, and a value of 0. Continue to explore solution for this.
+        if (playerNameEl.value === "" && scoreArray.length === 0) {
+            noScoresToShow.style.display = "block";
+            return
+        }
 
         else {
             let score = scoreArray[i].userName + ' : ' + scoreArray[i].userScore;
@@ -324,8 +294,8 @@ function scoreListLoop(){
             console.log("scoreArray is" + scoreArray  + " at line 324");
         } //end: else
     } // end: for
-
 }
+
 // ******************************************************* 
 // CREATE COLLECTION OF EVENT LISTENERS 
 // ******************************************************* 

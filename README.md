@@ -1,4 +1,4 @@
-# code-quiz
+# Code Quiz
 A timed quiz on JavaScript fundamentals that stores high scores.
 
 ## Important URLs
@@ -43,6 +43,14 @@ THEN I can save my initials and my score
 
 ![Official Screenshot](./assets/_guide/Assets/04-web-apis-homework-demo.gif)
 
+* Here are actual screenshots from the deployed application:
+
+![Screenshot 1](./assets/_guide/Assets/screenshot1.png)
+![Screenshot 2](./assets/_guide/Assets/screenshot2.png)
+
 ## Licensing
 The project is made possible with the following Licensing:
 - [MIT](license.txt)
+
+## Contact Developer
+For additional information, contact this application's developer: letschat@candracodes.com

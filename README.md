@@ -43,3 +43,6 @@ THEN I can save my initials and my score
 
 ![Official Screenshot](./assets/_guide/Assets/04-web-apis-homework-demo.gif)
 
+## Licensing
+The project is made possible with the following Licensing:
+- [MIT](license.txt)
